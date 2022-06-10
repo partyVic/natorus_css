@@ -68,9 +68,10 @@ body {
 }
 
 /* Animation can still happen when hover */
-/* .logo-box:hover .logo{
+/* when hover on the .logo-box, ONLY .logo have hover effects. .logo-box will NOT have any hover effects. */
+.logo-box:hover .logo {
     animation: moveInRight 1s ease-in;
-} */
+}
 
 
 
@@ -83,6 +84,7 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    text-align: center;
 }
 
 .heading-primary {
@@ -91,6 +93,8 @@ body {
 
     /* solve a problem when animation finished, the animation object may have a little bit(1 or 2px) shaking */
     backface-visibility: hidden;
+
+    margin-bottom: 60px;
 }
 
 
@@ -164,4 +168,31 @@ body {
         opacity: 1;
         transform: translateX(0);
     }
+}
+
+
+.btn:link,
+.btn:visited {
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 15px 40px;
+    display: inline-block;
+    border-radius: 100px;
+    transition: all .2s;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, .2);
+}
+
+/* active is when click the button, the active effect starts */
+.btn:active {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
+}
+
+.btn-white {
+    background-color: #fff;
+    color: #777;
 }
