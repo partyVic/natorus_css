@@ -1,24 +1,44 @@
 /* use the universal selector to Normalize the css in order to make a cross browser reset */
-* {
+/* remember to add ::after & ::before as well, they still need a global reset */
+*,
+*::after,
+*::before {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+
+    /* box-sizing by itself is NOT inherit. Use inherit keyword to force box-sizing inheritance */
+    /* after setting this. in body{box-sizing: boder-box}, all child element of body will take this effect */
+    box-sizing: inherit;
+}
+
+/* any font setting will be inherited to all child elements */
+/* good to set font-size 10px === 1rem in html, easier to calculate font-size for child element by using rem  */
+/* child element can use rem to set font-size, margin, padding, width, height etc. to make responsive layout*/
+/* almost all the child element can use rem by defining html font-size:10px */
+/* *********** This way avoid putting too much responsive setting in @media query ************* */
+html {
+    /* font-size: 10px; */
+
+    /* browser default size is 16px, 10/16=0.625, so 62.5% === 10 px, same as above */
+    /* This way is better than set 10px */
+    /* because if doing zooming function, setting 62.5% is much easier than a 10px */
+    font-size: 62.5%;
 }
 
 
-
 body {
+    box-sizing: border-box;
 
     /* the properties related to font are usually inherited */
     /* child element will inherite body's font setting */
     font-family: 'Lato', sans-serif;
     font-weight: 400;
-    font-size: 16px;
+    /* font-size: 16px; */
     line-height: 1.7;
     color: #777;
 
     /* padding will NOT inherited to child */
-    padding: 30px;
+    padding: 3rem;
 }
 
 
@@ -57,14 +77,14 @@ body {
     /* logo-box的母element是 .header，只有将 .header 的position设为relative */
     /* logo-box的position: absolute才起作用 top和left这时才是对应母element作为参照*/
     position: absolute;
-    top: 40px;
-    left: 40px;
+    top: 4rem;
+    left: 4rem;
 }
 
 .logo {
     /* 浏览器会自动计算width以满足图片的要求 */
     /* 设置width的话，浏览器会自动计算height */
-    height: 35px;
+    height: 3.5rem;
 }
 
 /* Animation can still happen when hover */
@@ -94,17 +114,17 @@ body {
     /* solve a problem when animation finished, the animation object may have a little bit(1 or 2px) shaking */
     backface-visibility: hidden;
 
-    margin-bottom: 60px;
+    margin-bottom: 6rem;
 }
 
 
 .heading-primary-main {
     /* 这个class为span，将其设为block element 能够占用全部width，这样就能更好的调整位置 */
     display: block;
-    font-size: 60px;
+    font-size: 6rem;
     font-weight: 400;
-    letter-spacing: 35px;
-    margin-right: -35px;
+    letter-spacing: 3.5rem;
+    margin-right: -3.5rem;
 
     animation-name: moveInLeft;
     animation-duration: 1s;
@@ -120,10 +140,10 @@ body {
 
 .heading-primary-sub {
     display: block;
-    font-size: 20px;
+    font-size: 2rem;
     font-weight: 700;
-    letter-spacing: 17.4px;
-    margin-right: -17.4px;
+    letter-spacing: 1.75rem;
+    margin-right: -1.75rem;
 
     /* short hand writting */
     /* same as 
@@ -140,11 +160,11 @@ body {
 @keyframes moveInLeft {
     0% {
         opacity: 0;
-        transform: translateX(-100px);
+        transform: translateX(-10rem);
     }
 
     80% {
-        transform: translateX(10px);
+        transform: translateX(1rem);
     }
 
     100% {
@@ -157,11 +177,11 @@ body {
 @keyframes moveInRight {
     0% {
         opacity: 0;
-        transform: translateX(100px);
+        transform: translateX(10rem);
     }
 
     80% {
-        transform: translateX(-10px);
+        transform: translateX(-1rem);
     }
 
     100% {
@@ -174,7 +194,7 @@ body {
 @keyframes moveInBottom {
     0% {
         opacity: 0;
-        transform: translateY(30px);
+        transform: translateY(3rem);
     }
 
     100% {
@@ -186,24 +206,25 @@ body {
 
 .btn:link,
 .btn:visited {
+    font-size: 1.6rem;
     text-transform: uppercase;
     text-decoration: none;
-    padding: 15px 40px;
+    padding: 1.5rem 4rem;
     display: inline-block;
-    border-radius: 100px;
+    border-radius: 10rem;
     transition: all .2s;
     position: relative;
 }
 
 .btn:hover {
     transform: translateY(-3px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, .2);
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, .2);
 }
 
 /* active is when click the button, the active effect starts */
 .btn:active {
     transform: translateY(-1px);
-    box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
+    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .2);
 }
 
 .btn-white {
@@ -218,7 +239,7 @@ body {
     display: inline-block;
     height: 100%;
     width: 100%;
-    border-radius: 100px;
+    border-radius: 10rem;
 
     /* below used to hide the content:"" of the actual button */
     /* absolute position needs to have a reference */
