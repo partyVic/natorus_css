@@ -171,6 +171,19 @@ body {
 }
 
 
+@keyframes moveInBottom {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+
 .btn:link,
 .btn:visited {
     text-transform: uppercase;
@@ -179,6 +192,7 @@ body {
     display: inline-block;
     border-radius: 100px;
     transition: all .2s;
+    position: relative;
 }
 
 .btn:hover {
@@ -195,4 +209,44 @@ body {
 .btn-white {
     background-color: #fff;
     color: #777;
+}
+
+.btn::after {
+    /* always need to put content value. if no value, put empty string */
+    content: "";
+
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    border-radius: 100px;
+
+    /* below used to hide the content:"" of the actual button */
+    /* absolute position needs to have a reference */
+    /* the reference is the first element with the relative position that it can find */
+    /* here, .header & .btn has relative position */
+    /* .btn is the first relative element can be found */
+    /* so follow the .btn position */
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+
+    transition: all .4s;
+}
+
+.btn-white::after {
+    background-color: #fff;
+}
+
+.btn:hover::after {
+    transform: scaleX(1.4) scaleY(1.6);
+    opacity: 0;
+}
+
+.btn-animated {
+    animation: moveInBottom .5s ease-out .75s;
+
+    /* it will automatically apply the styles up to 0% before the animnation statrs */
+    /* the animation is using moveInBottom, so the 0% effect is from moveInBottom */
+    animation-fill-mode: backwards;
 }
