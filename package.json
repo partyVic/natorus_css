@@ -1,0 +1,19 @@
+{
+  "name": "natorus-css-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "compile:sass": "sass --no-source-map sass/main.scss css/style.css -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/partyVic/natorus_css.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/partyVic/natorus_css/issues"
+  },
+  "homepage": "https://github.com/partyVic/natorus_css#readme"
+}
